@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  subject: MyString
+  description: MyString
+  done: false
+  registration_date: 2017-12-17 23:49:24
+  first_reminder_date: 2017-12-17 23:49:24
+  second_reminder_date: 2017-12-17 23:49:24
+  third_reminder_date: 2017-12-17 23:49:24
+
+two:
+  subject: MyString
+  description: MyString
+  done: false
+  registration_date: 2017-12-17 23:49:24
+  first_reminder_date: 2017-12-17 23:49:24
+  second_reminder_date: 2017-12-17 23:49:24
+  third_reminder_date: 2017-12-17 23:49:24

@@ -1,0 +1,22 @@
+<h1>task show page</h1>
+<br>
+<br>
+description :<%= @task.description %>
+<br>
+subject :<%= @task.subject.name %>
+<br>
+done? :<%= @task.done ? "\u2611" : "\u2610"  %>
+
+<br>
+Registration Date :<%= @task.registration_date %>
+<br>
+First reminder Date :<%= @task.first_reminder_date %>
+<br>
+second_reminder_date :<%= @task.second_reminder_date %>
+<br>
+third_reminder_date :<%= @task.third_reminder_date %>
+<br>
+<br>
+<%= link_to 'Back', tasks_path %> 
+<%= link_to 'Edit', edit_task_path %>
+<%= link_to "Delete", @task, method: :delete, data: { confirm: "Are you sure?" } %>

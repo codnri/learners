@@ -1,0 +1,30 @@
+
+<%= form_for @task do |f|%>
+    <%= render 'error_messages' %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <br>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+    <br>
+    <%= f.label :done %>
+    <%= f.check_box :done %>
+    <br>
+    <%= f.label :registration_date %>
+    <%= f.datetime_select :registration_date %>
+    <br>
+    <%= f.label :first_reminder_date %>
+    <%= f.datetime_select :first_reminder_date %>
+    <br>
+    <%= f.label :second_reminder_date %>
+    <%= f.datetime_select :second_reminder_date %>
+    <br>
+    <%= f.label :third_reminder_date %>
+    <%= f.datetime_select :third_reminder_date %>
+    <br>
+    <%= f.label :subject_id %>
+    <%= f.collection_select(:subject_id, Subject.all, :id, :name, :prompt => true ) %>
+    <br>
+    <%= f.submit class: "btn btn-primary" %>
+    
+<% end %>

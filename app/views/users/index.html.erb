@@ -1,0 +1,18 @@
+<h1>Users#index</h1>
+
+<table>
+  <tr>
+    <th>Action</th>
+    <th>Admin</th>
+    <th>Name</th>
+    <th>Email</th>
+  </tr>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= link_to "Edit", edit_user_path(user) %>|<%= link_to "Del", user, method: :delete, data: { confirm: 'Are you sure?' } if logged_in? && current_user.admin? %></td>
+      <td><%= "\u{2611}" if user.admin %></td>
+      <td><%= link_to "#{user.firstname} #{user.lastname}", user %></td>
+      <td><%= user.email %></td>
+    </tr>
+  <% end %>
+</table>

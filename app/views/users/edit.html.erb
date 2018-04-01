@@ -1,0 +1,19 @@
+<h1>Users#edit</h1>
+<p>Find me in app/views/users/edit.html.erb</p>
+<%= form_for(@user) do |f| %>
+  <%= render 'error_messages' %>
+  <%= f.label :firstname %>
+  <%= f.text_field :firstname %>
+  <br>
+  <%= f.label :lastname %>
+  <%= f.text_field :lastname %>
+  <br>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+  <br>
+  <%= f.label :admin %>
+  <%= f.check_box :admin %>
+  <br>
+  <%= f.submit "Update", class: "btn btn-primary" %>
+
+<% end %>

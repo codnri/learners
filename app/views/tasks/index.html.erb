@@ -1,0 +1,35 @@
+index
+<%= link_to 'new', new_task_path %>
+test:current_user > <%= current_user.email if current_user %>
+<table>
+    <th>done?</th>
+    <th>title</th>
+    <th>description</th>
+    <th>registration_date</th>
+    <th>first_reminder_date</th>
+    <th>second_reminder_date</th>
+    <th>third_reminder_date</th>
+    <th>subject_id</th>
+    
+    
+    <% @tasks.each do |t| %>
+    <tr>
+        <td>
+          <%= link_to task_toggle_path(t), method: :patch, remote: true do %>
+            <div id="status-<%= t.id%>">
+                <%= t.done ? "\u2611" : "\u2610"  %>
+            </div> 
+          <% end %>
+        </td>
+        <td><%= link_to t.subject.name, task_path(t) %></td>
+        <td><%= t.description %></td>
+        <td><%= t.registration_date %></td>
+        <td><%= t.first_reminder_date %></td>
+        <td><%= t.second_reminder_date %></td>
+        <td><%= t.third_reminder_date %></td>
+        <td><%= t.subject_id %></td>
+        
+
+    </tr>
+    <% end %>
+</table>
