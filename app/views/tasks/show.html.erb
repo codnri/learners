@@ -8,13 +8,15 @@ subject :<%= @task.subject.name %>
 done? :<%= @task.done ? "\u2611" : "\u2610"  %>
 
 <br>
+
+<br>
 Registration Date :<%= @task.registration_date %>
 <br>
 First reminder Date :<%= @task.first_reminder_date %>
 <br>
-second_reminder_date :<%= @task.second_reminder_date %>
+Second reminder Date :<%= @task.second_reminder_date %>
 <br>
-third_reminder_date :<%= @task.third_reminder_date %>
+Third reminder Date :<%= @task.third_reminder_date %>
 <br>
 <br>
 <%= link_to 'Back', tasks_path %> 

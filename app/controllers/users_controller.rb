@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
-  # before_action :check_logged_in_user, except: [:new,:create]
-  # before_action :check_correct_user,   only: [:edit, :update]
+  before_action :check_logged_in_user, except: [:new,:create]
+  # before_action :check_current_user,   only: [:edit, :update]
   # before_action :check_admin_user,     only: :destroy
 
 
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      # log_in @user #create session
+      log_in @user #create session
       flash[:success]="Welcome to Learners!!"
       redirect_to root_url
     else
@@ -64,7 +64,7 @@ class UsersController < ApplicationController
       end
     end
     
-    def check_correct_user
+    def check_current_user
       # GET   /users/:id/edit
       # PATCH /users/:id
       @user = User.find(params[:id])

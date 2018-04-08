@@ -38,7 +38,9 @@ class Task < ApplicationRecord
     self.first_reminder_date ||= registration_date + 1.days
     self.second_reminder_date ||= registration_date + 1.weeks
     self.third_reminder_date ||= registration_date + 1.months
-    
+    self.first_check ||= false
+    self.second_check ||= false
+    self.third_check ||= false
   end
   
   

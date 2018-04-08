@@ -1,16 +1,20 @@
 index
-<%= link_to 'new', new_task_path %>
+<%= link_to 'New Task', new_task_path %>
 test:current_user > <%= current_user.email if current_user %>
-<table>
+
+<% unless @tasks.empty? %>
+  <table>
     <th>done?</th>
     <th>title</th>
     <th>description</th>
     <th>registration_date</th>
-    <th>first_reminder_date</th>
-    <th>second_reminder_date</th>
-    <th>third_reminder_date</th>
+    <th>first check</th>
+    <th>first reminder date</th>
+    <th>second check</th>
+    <th>second reminder date</th>
+    <th>third check</th>
+    <th>third reminder date</th>
     <th>subject_id</th>
-    
     
     <% @tasks.each do |t| %>
     <tr>
@@ -24,12 +28,18 @@ test:current_user > <%= current_user.email if current_user %>
         <td><%= link_to t.subject.name, task_path(t) %></td>
         <td><%= t.description %></td>
         <td><%= t.registration_date %></td>
+        <td><%= t.first_check %></td>
         <td><%= t.first_reminder_date %></td>
+        <td><%= t.second_check %></td>
         <td><%= t.second_reminder_date %></td>
+        <td><%= t.third_check %></td>
         <td><%= t.third_reminder_date %></td>
         <td><%= t.subject_id %></td>
         
 
     </tr>
-    <% end %>
-</table>
+  <% end %>
+  </table>
+<% else %>
+    <p>No Task</p>
+<% end %>

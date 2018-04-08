@@ -10,10 +10,15 @@
 
   <body>
     <%= render 'layouts/header' %>
-
-    <% flash.each do |key_type, message| %>
-      <div class="alert alert-<%= key_type %>"><%= message %></div>
+    <% flash.each do |key, message| %>
+        <div class="text-center alert
+                    alert-<%= key == 'notice' ? 'success' : 'danger' %>">
+          <%= message %>
+        </div>
     <% end %>
+    
     <%= yield %>
   </body>
+  
+  
 </html>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180102002141) do
+ActiveRecord::Schema.define(version: 20180408031324) do
 
   create_table "subjects", force: :cascade do |t|
     t.string "name"
@@ -34,6 +34,9 @@ ActiveRecord::Schema.define(version: 20180102002141) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "subject_id"
+    t.boolean "first_check"
+    t.boolean "second_check"
+    t.boolean "third_check"
     t.index ["subject_id"], name: "index_tasks_on_subject_id"
   end
 

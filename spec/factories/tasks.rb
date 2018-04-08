@@ -14,6 +14,9 @@ FactoryGirl.define do
 			description nil
 		end
     
+    factory :only_task do #child factory
+			subject_id nil
+		end
     
   end
 

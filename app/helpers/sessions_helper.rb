@@ -3,6 +3,8 @@ module SessionsHelper
   #create a session for the login user
   def log_in(user)
     session[:user_id] = user.id
+    # p "-------"
+    # p session[:user_id]
   end
   
   
@@ -17,6 +19,9 @@ module SessionsHelper
   end
   
   def logged_in?
+    # p "-------"
+    # p @current_user
+    
     !current_user.nil?
   end
   

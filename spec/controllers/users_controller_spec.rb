@@ -1,51 +1,62 @@
 require 'rails_helper'
 
 describe UsersController do
-  describe 'GET #show' do
-    it "assigns the requested user to @user" do 
-      user = create(:user)
-      get :show, params: {id: user}
-      expect(assigns(:user)).to eq user  
-    end
-    
-    it "renders the show template" do
-      user = create(:user)
-      get :show, params: {id: user}
-      expect(response).to render_template :show
-    end
-    
-  end
+
   
-  describe "GET #new" 
-  
-  describe "GET #index" do 
-    it "assigns the requested users to @users" do 
-      user1 = create(:user, email: "user1@test.com")
-      user2 = create(:user, email: "user2@test.com")
-      user_array = [user1,user2]
-      get :index
-      expect(assigns(:users)).to match_array(user_array) 
+  # include  ActionView::Helpers::SessionsHelper
+  describe "login with valid user" do
+    before do
+        @user = create(:user)
+        session[:user_id] = @user.id
+     end
+    
+    describe 'GET #show' do
+      
+      it "assigns the requested user to @user" do 
+        get :show, params: {id: @user}
+        expect(assigns(:user)).to eq @user  #check @user variable in user controller whether it has the value same with @user(=created in spec)
+      end
+      
+      it "renders the show template" do
+        # user = create(:user)
+        get :show, params: {id: @user}
+        expect(response).to render_template :show
+      end
+      
     end
     
-    it "renders the :index template" do
-      get :index
-      expect(response).to render_template :index
-    end
+    describe "GET #new" 
     
-  end
-  describe "GET #edit" do
+    describe "GET #index" do 
+      it "assigns the requested users to @users" do 
+        # user1 = create(:user, email: "user1@test.com")
+        user2 = create(:user, email: "user2@test.com")
+        user_array = [@user,user2]
+        get :index
+        expect(assigns(:users)).to match_array(user_array) 
+      end
+      
+      it "renders the :index template" do
+        get :index
+        expect(response).to render_template :index
+      end
+      
+    end
+    describe "GET #edit" do
         it "assigns the requested user to @user" do 
-      user = create(:user)
-      get :edit, params: {id: user}
-      expect(assigns(:user)).to eq user  
-    end
-    
-    it "renders the show template" do
-      user = create(:user)
-      get :edit, params: {id: user}
-      expect(response).to render_template :edit
+        # user = create(:user)
+        get :edit, params: {id: @user}
+        expect(assigns(:user)).to eq @user  
+      end
+      
+      it "renders the show template" do
+        # user = create(:user)
+        get :edit, params: {id: @user}
+        expect(response).to render_template :edit
+      end
     end
   end
+  
   
   describe "POST #create" do
     context "with valid attributes" do
@@ -79,17 +90,16 @@ describe UsersController do
   
     before :each do
       @user = create(:user) # firstname "John" lastname "White"
-          
+      session[:user_id] = @user.id
     end
   
     context "valid attributes" do
-    # 要求された@contact を取得すること
+
       it "locates the requested @contact" do
         patch :update, params: {id: @user, user: attributes_for(:user)}
         expect(assigns(:user)).to eq(@user)
       end
       
-      # @contact の属性を変更すること
       it "changes @user's attributes" do
         patch :update, params: { id: @user, user: attributes_for(:user,
         firstname: 'Foo',
@@ -134,6 +144,7 @@ describe UsersController do
   describe 'DELETE #destroy' do
     before :each do
       @user = create(:user)
+      session[:user_id] = @user.id
     end
     
     # 連絡先を削除すること
