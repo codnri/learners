@@ -80,15 +80,17 @@ class TasksController < ApplicationController
   def toggle
     
     @task = Task.find(params[:task_id])
-    if @task.done
-      @task.update_attribute(:done, false)
+    which_checkbox = params[:which_checkbox]
+    
+    
+    if eval "@task.#{which_checkbox}"
+      eval "@task.update_attribute(:#{which_checkbox}, false)"
       @status = "\u2610" #BALLOT BOX
     else
-      @task.update_attribute(:done, true)
+      eval "@task.update_attribute(:#{which_checkbox}, true)"
       @status = "\u2611" #BALLOT BOX WITH CHECK
     end
-    @element = "status-" + @task.id.to_s
-    # status-<%=t.id%>
+    @element = "status-" + which_checkbox + "-" + @task.id.to_s
     respond_to do |format|
       format.html
       format.js
