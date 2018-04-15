@@ -23,6 +23,7 @@ class TasksController < ApplicationController
   
   def new
     @task = Task.new
+    @task.subject_id = params[:subject_id] if params[:subject_id]
   end
   
   def create

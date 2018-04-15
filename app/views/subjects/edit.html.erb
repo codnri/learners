@@ -1,0 +1,17 @@
+
+<%= form_for @subject do |f|%>
+  <% if @subject.errors.any? %>
+    <ul>
+      <% @subject.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <br>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <br>
+  <%= f.submit class: "btn btn-primary" %>
+  
+<% end %>
