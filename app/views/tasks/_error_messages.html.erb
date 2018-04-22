@@ -1,7 +1,10 @@
 <% if @task.errors.any? %>
-    <ul>
+  <div class="text-center alert alert-danger col-md-6 col-md-offset-3">
+    <span class="h4">Errors:</span>
+    <ul class="text-left">
       <% @task.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
     </ul>
+  </div>
 <% end %>

@@ -40,6 +40,8 @@ class TasksController < ApplicationController
     
     if @task.save
       flash[:success]="Task is created successfully"
+      p "------------"
+      p flash
       redirect_to @task
     else
       render 'new'
@@ -86,10 +88,10 @@ class TasksController < ApplicationController
     
     if eval "@task.#{which_checkbox}"
       eval "@task.update_attribute(:#{which_checkbox}, false)"
-      @status = "\u2610" #BALLOT BOX
+      @status = "square" #"\u2610" #BALLOT BOX
     else
       eval "@task.update_attribute(:#{which_checkbox}, true)"
-      @status = "\u2611" #BALLOT BOX WITH CHECK
+      @status = "check-square" #BALLOT BOX WITH CHECK
     end
     @element = "status-" + which_checkbox + "-" + @task.id.to_s
     respond_to do |format|

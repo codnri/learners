@@ -1,24 +1,34 @@
-<h1>task show page</h1>
-<br>
-<br>
-description :<%= @task.description %>
-<br>
-subject :<%= link_to @task.subject.name, subject_path(id: @task.subject_id) %>
-<br>
-done? :<%= @task.done ? "\u2611" : "\u2610"  %>
+<!--<h1><small>Task :</small><%= @task.description %></h1>-->
 
-<br>
 
-<br>
-Registration Date :<%= @task.registration_date %>
-<br>
-First reminder Date :<%= @task.first_reminder_date %>
-<br>
-Second reminder Date :<%= @task.second_reminder_date %>
-<br>
-Third reminder Date :<%= @task.third_reminder_date %>
-<br>
-<br>
-<%= link_to 'Back', tasks_path %> 
-<%= link_to 'Edit', edit_task_path %>
-<%= link_to "Delete", @task, method: :delete, data: { confirm: "Are you sure?" } %>
+<!--<div class="show-form panel panel-default">-->
+
+<div class="card">
+   <div class="subject">Task :<%= @task.description %></div>
+  <div class="panel-body">
+    subject :<%= link_to @task.subject.name, subject_path(id: @task.subject_id) %>
+    <br>
+    done? :<%= @task.done ?  fa_icon("check-square") : fa_icon("square")   %>
+    
+    <br>
+    
+    <div class="time"> 
+      Start Date :<%= timeParse @task.registration_date %>
+    </div>
+    <div class="time"> 
+      First reminder Date :<%= timeParse @task.first_reminder_date %>
+    </div>
+  
+    <div class="time"> 
+      Second reminder Date :<%= timeParse @task.second_reminder_date %>
+    </div>
+  
+    <div class="time"> 
+    Third reminder Date :<%= timeParse @task.third_reminder_date %>
+    </div>
+  </div>
+</div>
+<!--</div>-->
+<%= link_to 'Back', tasks_path, class: "btn btn-default"  %> 
+<%= link_to 'Edit', edit_task_path, class: "btn btn-default"  %>
+<%= link_to "Delete", @task, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger pull-right"  %>

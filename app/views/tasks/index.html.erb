@@ -1,55 +1,104 @@
-index
-<%= link_to 'New Task', new_task_path %>
-test:current_user > <%= current_user.email if current_user %>
+<h1>Your Tasks <%= link_to 'New Task', new_task_path, class: "btn btn-default pull-right" %></h1>
+
+
 
 <% unless @tasks.empty? %>
-  <table>
-    <th>title</th>
-    <th>description</th>
-    <th>registration_date</th>
-    <th>first check</th>
-    <th>first reminder date</th>
-    <th>second check</th>
-    <th>second reminder date</th>
-    <th>third check</th>
-    <th>third reminder date</th>
-    <th>subject_id</th>
-    
-    <% @tasks.each do |t| %>
-    <tr>
-        <td><%= link_to t.subject.name, subject_path(t.subject_id) %></td>
-        <td><%= link_to t.description,  task_path(t) %></td>
-        <td><%= timeParse(t.registration_date) %></td>
-        <td>
-          <%= link_to task_toggle_path( task_id: t.id, which_checkbox:"first_check"), method: :patch, remote: true do %>
-            <div id="status-first_check-<%= t.id%>">
-                <%= t.first_check ? "\u2611" : "\u2610"  %>
-            </div> 
-          <% end %>
-        </td>
-        <td><%= timeParse(t.first_reminder_date) %></td>
-        <td>
-          <%= link_to task_toggle_path( task_id: t.id, which_checkbox:"second_check"), method: :patch, remote: true do %>
-            <div id="status-second_check-<%= t.id%>">
-                <%= t.first_check ? "\u2611" : "\u2610"  %>
-            </div> 
-          <% end %>
-        </td>
-        <td><%= timeParse(t.second_reminder_date) %></td>
-        <td>
-          <%= link_to task_toggle_path( task_id: t.id, which_checkbox:"third_check"), method: :patch, remote: true do %>
-            <div id="status-third_check-<%= t.id%>">
-                <%= t.first_check ? "\u2611" : "\u2610"  %>
-            </div> 
-          <% end %>        
-        </td>
-        <td><%= timeParse(t.third_reminder_date) %></td>
-        <td><%= t.subject_id %></td>
-        
 
-    </tr>
+  <% @tasks.each do |t| %>
+    <div class="card">
+      <div class="subject"> <%= link_to t.subject.name, subject_path(t.subject_id), class: "fix"%> <span class="start-date">Start: <%= timeParse(t.registration_date) %></span></div>
+      <div class="container">
+        <div class="description"><%= link_to t.description,  task_path(t) %></div>
+        <div class="check-date">
+            <%= link_to task_toggle_path( task_id: t.id, which_checkbox:"first_check"), method: :patch, remote: true do %>
+              <span id="status-first_check-<%= t.id%>">
+                <%= t.first_check ?  fa_icon("check-square") : fa_icon("square")  %>
+              </span>
+            <% end %>
+            1st <%= timeParse(t.first_reminder_date) %>
+        </div>
+        
+        <div class="check-date">
+            <%= link_to task_toggle_path( task_id: t.id, which_checkbox:"second_check"), method: :patch, remote: true do %>
+              <span id="status-second_check-<%= t.id%>">
+                <%= t.second_check ?  fa_icon("check-square") : fa_icon("square")  %>
+              </span>
+            <% end %>
+            2nd <%= timeParse(t.second_reminder_date) %>
+        </div>
+        
+        <div class="check-date">
+            <%= link_to task_toggle_path( task_id: t.id, which_checkbox:"third_check"), method: :patch, remote: true do %>
+              <span id="status-third_check-<%= t.id%>">
+                <%= t.third_check ?  fa_icon("check-square") : fa_icon("square")  %>
+              </span>
+            <% end %>
+            3rd <%= timeParse(t.second_reminder_date) %>
+        </div>
+        
+        
+      </div>
+    </div>
   <% end %>
-  </table>
+  
 <% else %>
     <p>No Task</p>
 <% end %>
+
+
+
+
+
+<!--<% unless @tasks.empty? %>-->
+<!--  <table>-->
+<!--    <th>title</th>-->
+<!--    <th>description</th>-->
+<!--    <th>registration_date</th>-->
+<!--    <th>first check</th>-->
+<!--    <th>first reminder date</th>-->
+<!--    <th>second check</th>-->
+<!--    <th>second reminder date</th>-->
+<!--    <th>third check</th>-->
+<!--    <th>third reminder date</th>-->
+<!--    <th>subject_id</th>-->
+    
+<!--    <% @tasks.each do |t| %>-->
+<!--    <tr>-->
+<!--        <td><%= link_to t.subject.name, subject_path(t.subject_id) %></td>-->
+<!--        <td><%= link_to t.description,  task_path(t) %></td>-->
+<!--        <td><%= timeParse(t.registration_date) %></td>-->
+<!--        <td>-->
+<!--          <%= link_to task_toggle_path( task_id: t.id, which_checkbox:"first_check"), method: :patch, remote: true do %>-->
+<!--            <div id="status-first_check-<%= t.id%>">-->
+<!--                <%= t.first_check ? "\u2611" : "\u2610"  %>-->
+<!--            </div> -->
+<!--          <% end %>-->
+<!--        </td>-->
+<!--        <td><%= timeParse(t.first_reminder_date) %></td>-->
+<!--        <td>-->
+<!--          <%= link_to task_toggle_path( task_id: t.id, which_checkbox:"second_check"), method: :patch, remote: true do %>-->
+<!--            <div id="status-second_check-<%= t.id%>">-->
+<!--                <%= t.first_check ? "\u2611" : "\u2610"  %>-->
+<!--            </div> -->
+<!--          <% end %>-->
+<!--        </td>-->
+<!--        <td><%= timeParse(t.second_reminder_date) %></td>-->
+<!--        <td>-->
+<!--          <%= link_to task_toggle_path( task_id: t.id, which_checkbox:"third_check"), method: :patch, remote: true do %>-->
+<!--            <div id="status-third_check-<%= t.id%>">-->
+<!--                <%= t.first_check ? "\u2611" : "\u2610"  %>-->
+<!--            </div> -->
+<!--          <% end %>        -->
+<!--        </td>-->
+<!--        <td><%= timeParse(t.third_reminder_date) %></td>-->
+<!--        <td><%= t.subject_id %></td>-->
+        
+
+<!--    </tr>-->
+<!--  <% end %>-->
+<!--  </table>-->
+<!--<% else %>-->
+<!--    <p>No Task</p>-->
+<!--<% end %>-->
+
+

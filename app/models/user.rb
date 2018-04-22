@@ -22,4 +22,9 @@ class User < ApplicationRecord
     BCrypt::Password.create(string, cost: cost)
   end
   
+  
+  def full_name
+    self.firstname + " " + self.lastname
+  end
+  
 end
