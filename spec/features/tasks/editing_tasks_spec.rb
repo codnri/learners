@@ -22,11 +22,13 @@ RSpec.feature "editing tasks" do
     
     click_link "Edit"
     fill_in "Description", with: "123 pages"
-    fill_in "Registration date", with: "2018-04-03 05:35:43 UTC"
+    fill_in "Start date", with: "2018-04-03 05:35:43 UTC"
     fill_in "First reminder date", with: "2018-04-04 05:35:43 UTC"
     fill_in "Second reminder date", with: "2018-04-10 05:35:43 UTC"
     fill_in "Third reminder date", with: "2018-05-03 05:35:43 UTC"
-    fill_in "Subject name", with: "My Test Subject"
+    page.check('new_task_toggle')
+
+    fill_in "subject_name", with: "My Test Subject"
     click_button "Update Task"
     
     expect(page).to have_content("Task is updated successfully")
@@ -51,7 +53,7 @@ RSpec.feature "editing tasks" do
     
     click_link "Edit"
     fill_in "Description", with: ""
-    fill_in "Registration date", with: ""
+    fill_in "Start date", with: ""
 
     click_button "Update Task"
     

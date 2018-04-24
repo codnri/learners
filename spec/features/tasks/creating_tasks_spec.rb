@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.feature "creating tasks" do
   
-  # ref : https://github.com/easante/workout_app5/blob/master/spec/features/exercises/creating_exercise_spec.rb
   # before do
         
 
@@ -10,24 +9,30 @@ RSpec.feature "creating tasks" do
   
   scenario "with valid inputs" do
     
-    @user = create(:user)
+    @subject = create(:subject)
+    @user = @subject.user
     login(@user) #LoginMacros
     
 
     visit '/'
     click_link "New Task"
     fill_in "Description", with: "123 pages"
-    fill_in "Registration date", with: "2018-04-03 05:35:43 UTC"
+    fill_in "Start", with: "2018-04-03 05:35:43 UTC"
     fill_in "First reminder date", with: "2018-04-04 05:35:43 UTC"
     fill_in "Second reminder date", with: "2018-04-10 05:35:43 UTC"
     fill_in "Third reminder date", with: "2018-05-03 05:35:43 UTC"
-    fill_in "Subject name", with: "My Test Subject"
+    # fill_in "subject_selection", with: ""
+    
+    select @subject.name, :from => 'task[subject_id]'
+    # within '#existing_task' do
+    #   find("option[value='1']").select_option
+    # end
     click_button "Create Task"
     
     expect(page).to have_content("Task is created successfully")
     
     expect(page).to have_content("123 pages")
-    expect(page).to have_content("My Test Subject")
+    expect(page).to have_content(@subject.name)
     
 
   end

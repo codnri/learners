@@ -112,7 +112,7 @@ describe UsersController do
       # 更新した連絡先のページへリダイレクトすること
       it "redirects to the updated user" do
         patch :update, params: {id: @user, user: attributes_for(:user)}
-        expect(response).to redirect_to @user
+        expect(response).to redirect_to edit_user_path @user
       end
     end
 

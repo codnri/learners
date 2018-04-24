@@ -1,5 +1,8 @@
 require "rails_helper"
 
+
+
+# /learners/app/helpers/application_helper.rb
 RSpec.feature "editing subjects" do
   
   before do
@@ -10,6 +13,9 @@ RSpec.feature "editing subjects" do
   end
   scenario "edit subjects with valid data" do
     
+    # include ActionView::Helpers
+    # include ActionView::ApplicationHelper
+    # ApplicationHelper
     visit "/"
     
     
@@ -22,9 +28,9 @@ RSpec.feature "editing subjects" do
     click_button "Update Subject"
 
     
-    expect(page).to have_content("Subject page: "+new_name)
+    expect(page).to have_content("Subject : "+new_name)
     expect(page).to have_content(@task.description)
-    expect(page).to have_content(@task.first_reminder_date)
+    expect(page).to have_content(timeParse @task.first_reminder_date)
     
     
   end

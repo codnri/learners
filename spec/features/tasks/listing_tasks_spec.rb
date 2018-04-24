@@ -22,16 +22,16 @@ RSpec.feature "listing tasks" do
     visit '/'
     
     expect(page).to have_content(@task.description)
-    expect(page).to have_content(@task.registration_date)
-    expect(page).to have_content(@task.first_reminder_date)
-    expect(page).to have_content(@task.second_reminder_date)
-    expect(page).to have_content(@task.third_reminder_date)
+    # expect(page).to have_content(timeParse @task.registration_date)
+    expect(page).to have_content(timeParse @task.first_reminder_date)
+    expect(page).to have_content(timeParse @task.second_reminder_date)
+    expect(page).to have_content(timeParse @task.third_reminder_date)
     
     expect(page).to have_content(@task2.description)
-    expect(page).to have_content(@task2.registration_date)
-    expect(page).to have_content(@task2.first_reminder_date)
-    expect(page).to have_content(@task2.second_reminder_date)
-    expect(page).to have_content(@task2.third_reminder_date)
+    # expect(page).to have_content(timeParse @task2.registration_date)
+    expect(page).to have_content(timeParse @task2.first_reminder_date)
+    expect(page).to have_content(timeParse @task2.second_reminder_date)
+    expect(page).to have_content(timeParse @task2.third_reminder_date)
     
     
 

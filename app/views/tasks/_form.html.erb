@@ -54,7 +54,7 @@
                 data-on="Create New Subject" data-off="Select Subject" data-onstyle="primary" data-offstyle="default" data-width="200">
         
             <div id="existing_task">
-               <%= f.collection_select(:subject_id, Subject.all, :id, :name, {:prompt => true}, {class: 'form-control'} ) %>
+               <%= f.collection_select(:subject_id, Subject.all, :id, :name, {:prompt => true}, {class: 'form-control',id: 'subject_selection'} ) %>
             </div>
                 
             <div id="new_task_name">
